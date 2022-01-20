@@ -26,7 +26,7 @@ run-all() {
     build-theora
     build-opus
     build-libwebp
-    build-freetype2
+    build-freetype
     build-fribidi
     build-harfbuzz
     build-libass
