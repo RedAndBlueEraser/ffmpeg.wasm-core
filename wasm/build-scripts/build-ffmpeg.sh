@@ -9,14 +9,15 @@ if [[ "$FFMPEG_ST" != "yes" ]]; then
     -pthread
     -s USE_PTHREADS=1                             # enable pthreads support
     -s PROXY_TO_PTHREAD=1                         # detach main() from browser/UI main thread
-    -o wasm/packages/core/dist/ffmpeg-core.js
+    -o ../wasm/packages/core/dist/ffmpeg-core.js
   )
 else
   mkdir -p wasm/packages/core-st/dist
   EXTRA_FLAGS=(
-    -o wasm/packages/core-st/dist/ffmpeg-core.js
+    -o ../wasm/packages/core-st/dist/ffmpeg-core.js
   )
 fi
+FFMPEG_PATH=ffmpeg
 FLAGS=(
   -I. -I./fftools -I$BUILD_DIR/include
   -Llibavcodec -Llibavdevice -Llibavfilter -Llibavformat -Llibavresample -Llibavutil -Lharfbuzz -Llibass -Lfribidi -Llibpostproc -Llibswscale -Llibswresample -L$BUILD_DIR/lib
@@ -31,11 +32,14 @@ FLAGS=(
   -s EXPORTED_FUNCTIONS="[_main]"  # export main and proxy_main funcs
   -s EXPORTED_RUNTIME_METHODS="[FS, cwrap, ccall, setValue, writeAsciiToMemory]"   # export preamble funcs
   -s INITIAL_MEMORY=2146435072                  # 64 KB * 1024 * 16 * 2047 = 2146435072 bytes ~= 2 GB
-  --pre-js wasm/src/pre.js
-  --post-js wasm/src/post.js
+  --pre-js ../wasm/src/pre.js
+  --post-js ../wasm/src/post.js
   $OPTIM_FLAGS
   ${EXTRA_FLAGS[@]}
 )
 echo "FFMPEG_EM_FLAGS=${FLAGS[@]}"
+cd $FFMPEG_PATH
 emmake make -j
 emcc "${FLAGS[@]}"
+
+cd $ROOT_DIR
