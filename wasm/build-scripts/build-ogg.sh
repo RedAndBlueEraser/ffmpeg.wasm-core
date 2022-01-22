@@ -3,7 +3,7 @@
 set -euo pipefail
 source $(dirname $0)/var.sh
 
-LIB_PATH=third_party/Ogg
+LIB_PATH=third_party/ogg
 CONF_FLAGS=(
   --prefix=$BUILD_DIR                                 # install library in a build directory for FFmpeg to include
   --host=i686-linux                                   # use i686 linux
