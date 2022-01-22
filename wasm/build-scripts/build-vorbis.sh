@@ -6,7 +6,7 @@ source $(dirname $0)/var.sh
 LIB_PATH=third_party/vorbis
 CONF_FLAGS=(
   --prefix=$BUILD_DIR                                 # install library in a build directory for FFmpeg to include
-  --host=i686-linux                                   # use i686 linux
+  --host=i686-gnu                                     # use i686 linux
   --enable-shared=no                                  # disable shared library
   --enable-docs=no
   --enable-examples=no
