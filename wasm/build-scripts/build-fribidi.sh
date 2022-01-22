@@ -16,5 +16,5 @@ echo "CONF_FLAGS=${CONF_FLAGS[@]}"
 (cd $LIB_PATH && \
   emconfigure ./autogen.sh "${CONF_FLAGS[@]}")
 emmake make -C $LIB_PATH clean
-emmake make -C $LIB_PATH install -j || true
-cp $LIB_PATH/fribidi.pc $BUILD_DIR/lib/pkgconfig
+emmake make -C $LIB_PATH install -j || true           # docs generation fails without C2man tool but it is not important as long as the binaries are compiled
+cp $LIB_PATH/fribidi.pc $BUILD_DIR/lib/pkgconfig      # finish the compilation process by copying fribidi.pc into the correct destination should the compilation be interrupted by the failing docs generation
