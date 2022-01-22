@@ -3,6 +3,7 @@
 set -euo pipefail
 source $(dirname $0)/var.sh
 
+FFMPEG_PATH=ffmpeg
 FLAGS=(
   "${FFMPEG_CONFIG_FLAGS_BASE[@]}"
   --enable-gpl            # required by x264
@@ -24,4 +25,7 @@ FLAGS=(
   # --enable-libaom         # enable libaom
 )
 echo "FFMPEG_CONFIG_FLAGS=${FLAGS[@]}"
+cd $FFMPEG_PATH
 emconfigure ./configure "${FLAGS[@]}"
+
+cd $ROOT_DIR
