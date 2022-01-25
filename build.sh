@@ -18,7 +18,7 @@ run-all() {
     build-x264
     build-x265
     build-libvpx
-    build-wavpack
+    #build-wavpack # disabled as FFmpeg has dropped libwavpack encoder
     build-lame
     build-fdk-aac
     build-ogg
