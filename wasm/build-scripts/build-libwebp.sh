@@ -4,6 +4,13 @@ set -euo pipefail
 source $(dirname $0)/var.sh
 
 LIB_PATH=third_party/libwebp
+
+if [[ "$FFMPEG_ST" == "yes" ]]; then
+  EXTRA_CM_FLAGS="-DWEBP_USE_THREAD=OFF"
+else
+  EXTRA_CM_FLAGS="-DWEBP_USE_THREAD=ON"
+fi
+
 CM_FLAGS=(
   -DCMAKE_INSTALL_PREFIX=$BUILD_DIR
   -DCMAKE_TOOLCHAIN_FILE=$TOOLCHAIN_FILE
@@ -21,6 +28,7 @@ CM_FLAGS=(
   -DWEBP_BUILD_LIBWEBPMUX=OFF
   -DWEBP_BUILD_WEBPMUX=OFF
   -DWEBP_BUILD_EXTRAS=OFF
+  ${EXTRA_CM_FLAGS-}
 )
 echo "CM_FLAGS=${CM_FLAGS[@]}"
 
