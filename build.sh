@@ -13,6 +13,7 @@ run() {
 run-all() {
   SCRIPTS=(
     # install dependencies
+    clean
     install-deps
     build-zlib
     build-x264
