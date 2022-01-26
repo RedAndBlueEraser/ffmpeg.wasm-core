@@ -38,6 +38,10 @@ FLAGS=(
   ${EXTRA_FLAGS[@]}
 )
 echo "FFMPEG_EM_FLAGS=${FLAGS[@]}"
+
+# Patch libtheoraenc.c to define ENOSUP (with ENOTSUP) if not defined
+patch -Np1 $FFMPEG_PATH/libavcodec/libtheoraenc.c < $ROOT_DIR/wasm/patches/libtheoraenc-enosup-fix.patch || rm -f $FFMPEG_PATH/libavcodec/libtheoraenc.c.rej
+
 cd $FFMPEG_PATH
 emmake make -j
 emcc "${FLAGS[@]}"
