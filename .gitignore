@@ -38,3 +38,4 @@
 /tools/python/__pycache__/
 /build
 /third_party/lame/
+/wasm/patches/x265.pc
