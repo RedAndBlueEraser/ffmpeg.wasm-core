@@ -8,6 +8,7 @@ CFLAGS="$CFLAGS -DHB_NO_PRAGMA_GCC_DIAGNOSTIC_ERROR"
 # A hacky way to disable pthread
 if [[ "$FFMPEG_ST" == "yes" ]]; then
   sed -i 's#\[have_pthread=true\]#\[have_pthread=false\]#g' $LIB_PATH/configure.ac
+  CFLAGS="$CFLAGS -s USE_PTHREADS=0"
 else
   sed -i 's#\[have_pthread=false\]#\[have_pthread=true\]#g' $LIB_PATH/configure.ac
 fi
