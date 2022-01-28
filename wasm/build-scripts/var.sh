@@ -10,7 +10,7 @@ export PATH=$PATH:$EMSDK/upstream/bin
 # if yes, we are building a single thread version of
 # ffmpeg.wasm-core, which is slow but compatible with
 # most browsers as there is no SharedArrayBuffer.
-FFMPEG_ST=${FFMPEG_ST:-no}
+FFMPEG_ST=${FFMPEG_ST:-yes}
 
 # Root directory
 ROOT_DIR=$PWD
@@ -30,11 +30,14 @@ OPTIM_FLAGS="-O3"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Use closure complier only in linux environment
-  OPTIM_FLAGS="$OPTIM_FLAGS --closure 1"
+  LD_OPTIM_FLAGS="--closure 1"
+else
+  LD_OPTIM_FLAGS=""
 fi
 
 # Unset OPTIM_FLAGS can speed up build
 # OPTIM_FLAGS=""
+# LD_OPTIM_FLAGS=""
 
 CFLAGS_BASE="$OPTIM_FLAGS -I$BUILD_DIR/include"
 CFLAGS="$CFLAGS_BASE -s USE_PTHREADS=1"
@@ -46,7 +49,7 @@ fi
 
 export CFLAGS=$CFLAGS
 export CXXFLAGS=$CFLAGS
-export LDFLAGS="$CFLAGS -L$BUILD_DIR/lib"
+export LDFLAGS="$CFLAGS $LD_OPTIM_FLAGS -L$BUILD_DIR/lib"
 export STRIP="llvm-strip"
 export EM_PKG_CONFIG_PATH=$EM_PKG_CONFIG_PATH
 
