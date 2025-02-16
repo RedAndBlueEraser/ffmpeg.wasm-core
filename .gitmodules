@@ -49,3 +49,6 @@
 [submodule "third_party/zlib"]
 	path = third_party/zlib
 	url = https://github.com/madler/zlib.git
+[submodule "wasm/tests/data"]
+	path = wasm/tests/data
+	url = https://github.com/ffmpegwasm/testdata.git

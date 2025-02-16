@@ -14,24 +14,24 @@ run-all() {
   SCRIPTS=(
     # install dependencies
     clean
-    install-deps
-    build-zlib
-    build-x264
-    build-x265
-    build-libvpx
-    #build-wavpack # disabled as FFmpeg has dropped libwavpack encoder
-    build-lame
-    build-fdk-aac
-    build-ogg
-    build-vorbis
-    build-theora
-    build-opus
-    build-libwebp
-    build-freetype
-    build-fribidi
-    build-harfbuzz
-    build-libass
-    #build-aom # disabled as it is extremely slow
+    #install-deps
+    #build-zlib
+    #build-x264
+    #build-x265
+    #build-libvpx
+    ##build-wavpack # disabled as FFmpeg has dropped libwavpack encoder
+    #build-lame
+    #build-fdk-aac
+    #build-ogg
+    #build-vorbis
+    #build-theora
+    #build-opus
+    #build-libwebp
+    #build-freetype
+    #build-fribidi
+    #build-harfbuzz
+    #build-libass
+    ##build-aom # disabled as it is extremely slow
     configure-ffmpeg
     build-ffmpeg
   )
