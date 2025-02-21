@@ -57,6 +57,7 @@ FFMPEG_CONFIG_FLAGS_BASE=(
   --target-os=none        # use none to prevent any os specific configurations
   --arch=x86_32           # use x86_32 to achieve minimal architectural optimization
   --enable-cross-compile  # enable cross compile
+  --disable-asm           # disable asm
   --disable-x86asm        # disable x86 asm
   --disable-inline-asm    # disable inline asm
   --disable-stripping     # disable stripping

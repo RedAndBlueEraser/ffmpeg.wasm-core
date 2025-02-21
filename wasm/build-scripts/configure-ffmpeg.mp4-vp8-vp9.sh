@@ -6,18 +6,18 @@ source $(dirname $0)/var.sh
 FFMPEG_PATH=ffmpeg
 FLAGS=(
   "${FFMPEG_CONFIG_FLAGS_BASE[@]}"
-  --enable-gpl            # required by x264
+  # --enable-gpl            # required by x264
   # --enable-nonfree        # required by fdk-aac
-  --disable-decoders
-  --enable-decoder=zlib
-  --enable-decoder=vp8
-  --enable-decoder=vp9
-  --enable-decoder=vorbis
+  --disable-network
+  --disable-everything
   --enable-decoder=opus
-  --disable-encoders
-  --enable-encoder=zlib           # enable zlib
-  --enable-encoder=libx264        # enable x264
   --enable-encoder=aac
+  --enable-demuxer=matroska
+  --enable-muxer=mp4
+  --enable-protocol=file
+  --enable-filter=aformat,anull,aresample
+  # --enable-encoder=libx264        # enable x264 encoder
+  # --enable-libx264        # enable x264
   # --enable-libx265        # enable x265
   # --enable-libvpx         # enable libvpx / webm
   # --enable-libmp3lame     # enable libmp3lame
